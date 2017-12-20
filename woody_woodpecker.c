@@ -69,7 +69,7 @@ int main (int argc, char **argv)
             fprintf(fd2, ", %i", buffer[counter]);
             counter++;
         }
-        fprintf(fd2, "};\ndelta_decode(tab, len);int fd = open(\"WOODY_TEMP_EXEC\", O_CREAT | O_TRUNC | O_WRONLY);int i = 0; while (i < len){write(fd, &tab[i], 1);i++;};close(fd);system(\"CHMOD 777 WOODY_TEMP_EXEC\");if(argc == 1 && argv[0]){system(\"./WOODY_TEMP_EXEC;\");}else{char flags[1024];int argcounter = 1;strcpy(flags, \"./WOODY_TEMP_EXEC\");while (argcounter < argc){strcat(flags, \" \");strcat(flags, argv[argcounter]);argcounter++;}system(flags);}system(\"RM WOODY_TEMP_EXEC\");}");
+        fprintf(fd2, "};\ndelta_decode(tab, len);int fd = open(\"WOODY_TEMP_EXEC\", O_CREAT | O_TRUNC | O_WRONLY);int i = 0; while (i < len){write(fd, &tab[i], 1);i++;};close(fd);system(\"chmod 777 WOODY_TEMP_EXEC\");if(argc == 1 && argv[0]){system(\"./WOODY_TEMP_EXEC;\");}else{char flags[1024];int argcounter = 1;strcpy(flags, \"./WOODY_TEMP_EXEC\");while (argcounter < argc){strcat(flags, \" \");strcat(flags, argv[argcounter]);argcounter++;}system(flags);}system(\"rm WOODY_TEMP_EXEC\");}");
         fclose(fd2);
         system("chmod 777 WOODY_TEMP_CODE.c; gcc -Wall -Werror -Wextra WOODY_TEMP_CODE.c -o wood; rm WOODY_TEMP_CODE.c");
 	}
