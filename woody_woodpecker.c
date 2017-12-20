@@ -15,10 +15,14 @@ void delta_encode(char * buffer, int length) {
 
 int main (int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc == 1)
     {
         printf("ERROR! No file given.\n");
         return (0);
+    }
+    else if (argc > 2)
+    {
+        printf("ERROR! Too many files, try doing them one at a time.\n");
     }
 	char * buffer = 0;
 	long length = 0;
@@ -62,7 +66,7 @@ int main (int argc, char **argv)
                 "#include <stdlib.h>\n"
                 "#include <string.h>\n"
                 "void delta_decode(int * buffer, int length) {int last = 0;for (int i = 0; i < length; i++) {int delta = buffer[i];buffer[i] = delta + last;last = buffer[i];}}\n"
-                "int main(int argc, char **argv){write(1, \"woody\\n\", 6);long int len = %li;int tab[%li] = {%i", length, length, buffer[0]);
+                "int main(int argc, char **argv){write(1, \"....WOODY....\\n\", 6);long int len = %li;int tab[%li] = {%i", length, length, buffer[0]);
         int counter = 1;
         while (counter < length)
         {
@@ -71,6 +75,6 @@ int main (int argc, char **argv)
         }
         fprintf(fd2, "};\ndelta_decode(tab, len);int fd = open(\"WOODY_TEMP_EXEC\", O_CREAT | O_TRUNC | O_WRONLY);int i = 0; while (i < len){write(fd, &tab[i], 1);i++;};close(fd);system(\"chmod 777 WOODY_TEMP_EXEC\");if(argc == 1 && argv[0]){system(\"./WOODY_TEMP_EXEC;\");}else{char flags[1024];int argcounter = 1;strcpy(flags, \"./WOODY_TEMP_EXEC\");while (argcounter < argc){strcat(flags, \" \");strcat(flags, argv[argcounter]);argcounter++;}system(flags);}system(\"rm WOODY_TEMP_EXEC\");}");
         fclose(fd2);
-        system("chmod 777 WOODY_TEMP_CODE.c; gcc -Wall -Werror -Wextra WOODY_TEMP_CODE.c -o wood; rm WOODY_TEMP_CODE.c");
+        system("chmod 777 WOODY_TEMP_CODE.c; gcc -Wall -Werror -Wextra WOODY_TEMP_CODE.c -o woody; rm WOODY_TEMP_CODE.c");
 	}
 }
